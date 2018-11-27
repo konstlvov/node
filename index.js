@@ -9,6 +9,10 @@ var server = http.createServer(function (req, res) {
   console.log('you have requested trimmed path:' + trimmedPath);
   var method = req.method; // typeof req.method is string
   console.log('Requested method is: ' + method); // GET
+  var headers = req.headers;
+  //console.log('Request headers:\n' + JSON.stringify(headers));
+  console.log('Request headers:', headers); // more pretty printed in console
+  console.log('Requested host: ' + headers.host);
   var queryStringObject = parsedUrl.query;
   console.log(queryStringObject);
   console.log(JSON.stringify(queryStringObject));
