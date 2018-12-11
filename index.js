@@ -6,7 +6,8 @@ var server = http.createServer(function (req, res) {
 
   var parsedUrl = url.parse(req.url, true); // 'true' flag tells node to convert query string to Object
   var path = parsedUrl.pathname;
-  var trimmedPath = path.replace(/^\/+\/+$/g, ''); // wtf?
+  var trimmedPath = path.replace(/^\/+/g, ''); // trimming slashes from the beginning of string
+  trimmedPath = trimmedPath.replace(/\/+$/g, ''); // and from the end of string
   console.log('you have requested path:' + path);
   console.log('you have requested trimmed path:' + trimmedPath);
   //
@@ -37,16 +38,19 @@ var server = http.createServer(function (req, res) {
       ,'queryStringObject': queryStringObject
       ,'method': method
       ,'headers': headers
-      ,'payload': payload
+      ,'payload': buffer
     }
     //calling handler
     chosenHandler(data, function(statusCode, payload){
-      //statusCode == typeof(statusCode) == 'number'
+      statusCode == typeof(statusCode) == 'number' ? statusCode : 200;
+      payload = typeof(payload) == 'object'? payload : {};
+      var payloadString = JSON.stringify(payload); // string we are sending to user
+      // instead of res.end sending something useful
+      res.writeHead(statusCode);
+      res.end(payloadString);
+      console.log('Request received with payload: ', buffer);
+      console.log('Returning this response: ', statusCode, payloadString);
     });
-
-    // moving res.end into the handler of 'end' event of req object
-    res.end('Hello world привет');
-    console.log('Request received with payload: ', buffer);
   });
 });
 
