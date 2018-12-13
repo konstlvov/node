@@ -1,6 +1,7 @@
 ﻿var http = require('http');
 var url = require('url');
 var StringDecoder = require('string_decoder').StringDecoder;
+var config = require('./config');
 
 var server = http.createServer(function (req, res) {
 
@@ -54,8 +55,8 @@ var server = http.createServer(function (req, res) {
   });
 });
 
-server.listen(3000, function() {
-  console.log('слушаю на порту 3000...');
+server.listen(config.port, function() {
+  console.log(`слушаю на порту ${config.port} в конфигурации "${config.envName}" ...`);
 });
 
 var handlers = {};
