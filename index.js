@@ -6,17 +6,16 @@ var server = http.createServer(function (req, res) {
 
   var parsedUrl = url.parse(req.url, true); // 'true' flag tells node to convert query string to Object
   var path = parsedUrl.pathname;
-  var trimmedPath = path.replace(/^\/+/g, ''); // trimming slashes from the beginning of string
-  trimmedPath = trimmedPath.replace(/\/+$/g, ''); // and from the end of string
-  console.log('you have requested path:' + path);
-  console.log('you have requested trimmed path:' + trimmedPath);
+  var trimmedPath = path.replace(/^\/+|\/+$/g, '');
+  console.log('you have requested path: ' + path);
+  console.log('you have requested trimmed path: ' + trimmedPath);
   //
   var method = req.method; // typeof req.method is string
   console.log('Requested method is: ' + method); // GET
   //
   var headers = req.headers;
   //console.log('Request headers:\n' + JSON.stringify(headers));
-  console.log('Request headers:', headers); // more pretty printed in console
+  console.log('Request headers: ', headers); // more pretty printed in console
   console.log('Requested host: ' + headers.host);
   //
   var queryStringObject = parsedUrl.query;
