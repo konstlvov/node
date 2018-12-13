@@ -46,6 +46,7 @@ var server = http.createServer(function (req, res) {
       payload = typeof(payload) == 'object'? payload : {};
       var payloadString = JSON.stringify(payload); // string we are sending to user
       // instead of res.end sending something useful
+      res.setHeader('Content-Type', 'application/json');
       res.writeHead(statusCode);
       res.end(payloadString);
       console.log('Request received with payload: ', buffer);
