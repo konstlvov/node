@@ -4,6 +4,18 @@ var url = require('url');
 var StringDecoder = require('string_decoder').StringDecoder;
 var config = require('./config');
 var fs = require('fs');
+var _data = require('./lib/data');
+
+// testing (@TODO: delete this)
+
+// _data.create('test', 'newFile', {'foo': 'bar'}, function(err){
+//   console.log('this was the error ', err);
+// });
+
+//TODO: delete this
+//_data.read('test', 'newFile', function(err, data){
+//  console.log('this was the error ', err , ' and it was the data ', data);
+//});
 
 // instantiate the HTTP server
 var httpServer = http.createServer(function (req, res) {
