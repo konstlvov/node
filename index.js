@@ -4,17 +4,40 @@ var url = require('url');
 var StringDecoder = require('string_decoder').StringDecoder;
 var config = require('./config');
 var fs = require('fs');
-var _data = require('./lib/data');
+//var _data = require('./lib/data');
 
 // testing (@TODO: delete this)
 
-// _data.create('test', 'newFile', {'foo': 'bar'}, function(err){
-//   console.log('this was the error ', err);
-// });
-
-//TODO: delete this
+//_data.create('test', 'newFile', {'foo': 'bar'}, function(err){
+//  if(!err) {
+//    console.log('create() function succeeded');
+//  } else {
+//    console.log('this was the error creating the file: ', err);
+//  }
+//});
+//
+// test read method, TODO: delete this
 //_data.read('test', 'newFile', function(err, data){
 //  console.log('this was the error ', err , ' and it was the data ', data);
+//});
+// test of update method, TODO: delete this
+//_data.update('test', 'newFile', {'foo': 'bar baz bats boo moo foo', "moo": "boooo"}, function(err){
+//  if (!err) {
+//    console.log('update() function test succeeded');
+//  } else {
+//    console.log('this was the error in update() function: ', err);
+//  }
+//});
+// test of update method, TODO: delete this
+// 
+// ... nice, it logs delete() before it logs create(), but works correctly
+//
+//_data.delete('test', 'newFile', function(err){
+//  if (!err) {
+//    console.log('delete() function test succeeded');
+//  } else {
+//    console.log('this was the error in delete() function: ', err);
+//  }
 //});
 
 // instantiate the HTTP server
