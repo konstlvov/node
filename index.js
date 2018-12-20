@@ -4,41 +4,7 @@ var url = require('url');
 var StringDecoder = require('string_decoder').StringDecoder;
 var config = require('./config');
 var fs = require('fs');
-//var _data = require('./lib/data');
-
-// testing (@TODO: delete this)
-
-//_data.create('test', 'newFile', {'foo': 'bar'}, function(err){
-//  if(!err) {
-//    console.log('create() function succeeded');
-//  } else {
-//    console.log('this was the error creating the file: ', err);
-//  }
-//});
-//
-// test read method, TODO: delete this
-//_data.read('test', 'newFile', function(err, data){
-//  console.log('this was the error ', err , ' and it was the data ', data);
-//});
-// test of update method, TODO: delete this
-//_data.update('test', 'newFile', {'foo': 'bar baz bats boo moo foo', "moo": "boooo"}, function(err){
-//  if (!err) {
-//    console.log('update() function test succeeded');
-//  } else {
-//    console.log('this was the error in update() function: ', err);
-//  }
-//});
-// test of update method, TODO: delete this
-// 
-// ... nice, it logs delete() before it logs create(), but works correctly
-//
-//_data.delete('test', 'newFile', function(err){
-//  if (!err) {
-//    console.log('delete() function test succeeded');
-//  } else {
-//    console.log('this was the error in delete() function: ', err);
-//  }
-//});
+var handlers = require('./lib/handlers');
 
 // instantiate the HTTP server
 var httpServer = http.createServer(function (req, res) {
@@ -116,24 +82,6 @@ var unifiedServer = function (req, res) {
   });
 };
 
-var handlers = {};
-
-// ping handler
-handlers.ping = function(data, callback) {
-  //callback(406, {'name': 'ping handler'});
-  callback(200);
-}
-
-// hello handler
-handlers.hello = function(data, callback) {
-  callback(200, {'welcomeMessage': 'Hello, world!'});
-}
-
-// not found hanlder
-handlers.notFound = function(data, callback) {
-  callback(404);
-}
-
 // router
 var router = {
    'ping': handlers.ping
@@ -141,8 +89,56 @@ var router = {
 };
 
 // scratchpad below:
+//var _data = require('./lib/data');
+
+// testing (@TODO: delete this)
+
+//_data.create('test', 'newFile', {'foo': 'bar'}, function(err){
+//  if(!err) {
+//    console.log('create() function succeeded');
+//  } else {
+//    console.log('this was the error creating the file: ', err);
+//  }
+//});
 //
-// echo system('curl localhost:3000/users/123')
+// test read method, TODO: delete this
+//_data.read('test', 'newFile', function(err, data){
+//  console.log('this was the error ', err , ' and it was the data ', data);
+//});
+// test of update method, TODO: delete this
+//_data.update('test', 'newFile', {'foo': 'bar baz bats boo moo foo', "moo": "boooo"}, function(err){
+//  if (!err) {
+//    console.log('update() function test succeeded');
+//  } else {
+//    console.log('this was the error in update() function: ', err);
+//  }
+//});
+// test of update method, TODO: delete this
+// 
+// ... nice, it logs delete() before it logs create(), but works correctly
+//
+//_data.delete('test', 'newFile', function(err){
+//  if (!err) {
+//    console.log('delete() function test succeeded');
+//  } else {
+//    console.log('this was the error in delete() function: ', err);
+//  }
+//});
+
+//
+// this may be pasted in Vim command mode:
+//
+// you type
+// :echo system('curl localhost:3000/hello')
+//
+// and it responds:
+//   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+//                                  Dload  Upload   Total   Spent    Left  Speed
+// 
+//   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+// 100    34    0    34    0     0    435      0 --:--:-- --:--:-- --:--:--   435{"welcomeMessage":"Hello, world!"}
+//
 //
 // non-empty query string:
 // echo system('curl localhost:3000/users/123?mode=userinfo')
+// echo system('curl localhost:3000/users/123')
