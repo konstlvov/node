@@ -1,0 +1,14 @@
+{
+  "name": "read-huge-file",
+  "version": "1.0.0",
+  "description": "testing how to read huge files with event-stream package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "event-stream": "^4.0.1"
+  }
+}
